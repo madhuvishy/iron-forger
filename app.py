@@ -1,5 +1,11 @@
+from pymongo import *
 from flask import Flask
+
 app = Flask(__name__)
+
+conn = MongoClient('mongodb://localhost:27017/')
+db = conn.iron_forger
+proposals = db.proposals
 
 @app.route('/')
 def hello_world():
@@ -7,7 +13,12 @@ def hello_world():
 
 @app.route('/proposal')
 def vote():
-    return "List of proposals goes here"
+    result = "<ul>"
+    props = proposals.find()
+    for prop in props:
+        result += "<li>%s %s %s </li>" % (prop["name"], prop["example"], prop["votes"])
+    result += "</ul>"
+    return result
 
 @app.route('/proposal/new')
 def new_proposal():
