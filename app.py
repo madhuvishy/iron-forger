@@ -3,8 +3,8 @@ from flask import Flask
 
 app = Flask(__name__)
 
-conn = MongoClient('mongodb://localhost:27017/')
-db = conn.iron_forger
+conn = MongoClient('mongodb://iron-forger:foobar@oceanic.mongohq.com:10059/app24464341')
+db = conn.app24464341
 proposals = db.proposals
 
 @app.route('/')
