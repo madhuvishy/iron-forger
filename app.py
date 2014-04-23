@@ -40,7 +40,4 @@ def user_name(name):
 def project_name(name):
     return "project %s" % name
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 
