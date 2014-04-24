@@ -39,4 +39,4 @@ def project_name(name):
     return "project %s" % name
 
 
-app.run(debug=True)
+# app.run(debug=True)
