@@ -1,5 +1,5 @@
 from pymongo import *
-from flask import Flask
+from flask import Flask, render_template
 
 import os
 
@@ -15,16 +15,12 @@ def hello_world():
 
 @app.route('/proposal')
 def vote():
-    result = "<ul>"
     props = proposals.find()
-    for prop in props:
-        result += "<li>%s %s %s </li>" % (prop["name"], prop["example"], prop["votes"])
-    result += "</ul>"
-    return result
+    return render_template("proposal.html", title="Proposals", proposals=props)
 
 @app.route('/proposal/new')
 def new_proposal():
-    return "Submit a proposal!"
+    return render_template("proposal_new.html", title="Proposal New")
 
 @app.route('/proposal/<name>')
 def proposal_name(name):
@@ -43,3 +39,4 @@ def project_name(name):
     return "project %s" % name
 
 
+# app.run(debug=True)
