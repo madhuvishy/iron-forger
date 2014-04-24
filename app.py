@@ -20,7 +20,7 @@ def vote():
 
 @app.route('/proposal/new')
 def new_proposal():
-    return render_template("proposal_new.html")
+    return render_template("proposal_new.html", title="Proposal New")
 
 @app.route('/proposal/<name>')
 def proposal_name(name):
@@ -39,3 +39,4 @@ def project_name(name):
     return "project %s" % name
 
 
+app.run(debug=True)
