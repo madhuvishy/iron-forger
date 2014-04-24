@@ -1,9 +1,11 @@
 from pymongo import *
 from flask import Flask
 
+import os
+
 app = Flask(__name__)
 
-conn = MongoClient('mongodb://iron-forger:foobar@oceanic.mongohq.com:10059/app24464341')
+conn = MongoClient(os.environ["MONGOHQ_URL"])
 db = conn.app24464341
 proposals = db.proposals
 
