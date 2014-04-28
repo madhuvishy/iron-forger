@@ -17,25 +17,25 @@ def hello_world():
 @app.route('/proposal', methods=['GET', 'POST'])
 def vote():
     props = proposals.find()
-    # radio_forms = {}
+    radio_forms = {}
     for prop in props:
-        # radio_forms[prop["name"]] = VoteForm(request.form, csrf_enabled=False)
+        radio_forms[prop["name"]] = VoteForm(request.form, csrf_enabled=False)
         updated_votes = {}
-        print prop["name"]
-        if request.method == 'POST':
-            pass
+        #if request.method == 'POST':
+        #    pass
         # updated_votes["yay"] = form.fields[prop["name"]].data
         # propsals.update({
         #     "name" : prop['name']
         #     },
         #     {"votes" : prop['votes']})
         # temp[prop["name"]] = form.fields[prop].data
-    return render_template("proposal.html", title="Proposals", proposals=props, radio_forms="")
+    props.rewind()
+    return render_template("proposal.html", title="Proposals", proposals=props, radio_forms=radio_forms)
 
 @app.route('/proposal/new', methods=['GET','POST'])
 def new_proposal():
     form = ProposalForm(request.form, csrf_enabled=False)
-    if request.method == 'POST': 
+    if request.method == 'POST':
         proposals.insert({
             "name": form.name.data,
             "example": form.example.data,
