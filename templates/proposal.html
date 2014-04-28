@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<p><form action="" method="post">
+<p>{{radio_forms}}</p>
+<p>{{proposals}}</p>
+
+<form action="" method="post" name="foo">
     {% for proposal in proposals %}
         <h3>{{ proposal["name"] }}</h3>
         <ul>
         <li>{{ proposal["example"] }}</li>
         <li>{{ proposal["votes"] }}</li>
-        <li><input type="radio" name="{{ proposal["name"] }}" value="yay">Yay!<br></li>
-        <li><input type="radio" name="{{ proposal["name"] }}" value="meh" checked>Meh.<br></li>
-        <li><input type="radio" name="{{ proposal["name"] }}" value="ugh">Ugh.<br></li>
         </ul>
     {% endfor %}
-</form></p>
+    <input type=submit value="My opinion matters!">
+</form>
+
 {% endblock %}
+

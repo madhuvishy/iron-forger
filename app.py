@@ -1,6 +1,6 @@
 from pymongo import *
 from flask import Flask, render_template, request, redirect
-from forms import ProposalForm
+from forms import ProposalForm, VoteForm
 
 import os
 
@@ -14,10 +14,23 @@ proposals = db.proposals
 def hello_world():
     return "Hello world!"
 
-@app.route('/proposal')
+@app.route('/proposal', methods=['GET', 'POST'])
 def vote():
     props = proposals.find()
-    return render_template("proposal.html", title="Proposals", proposals=props)
+    # radio_forms = {}
+    for prop in props:
+        # radio_forms[prop["name"]] = VoteForm(request.form, csrf_enabled=False)
+        updated_votes = {}
+        print prop["name"]
+        if request.method == 'POST':
+            pass
+        # updated_votes["yay"] = form.fields[prop["name"]].data
+        # propsals.update({
+        #     "name" : prop['name']
+        #     },
+        #     {"votes" : prop['votes']})
+        # temp[prop["name"]] = form.fields[prop].data
+    return render_template("proposal.html", title="Proposals", proposals=props, radio_forms="")
 
 @app.route('/proposal/new', methods=['GET','POST'])
 def new_proposal():
