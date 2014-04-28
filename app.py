@@ -25,8 +25,8 @@ def new_proposal():
     if request.method == 'POST': 
         proposals.insert({
             "name": form.name.data,
-            "description": form.description.data,
-            "votes": 0
+            "example": form.example.data,
+            "votes": {"yay" : 0, "meh" : 0, "ugh" : 0}
         })
         return redirect("/proposal")
     return render_template("proposal_new.html", title="New Proposal", form=form)
@@ -47,5 +47,5 @@ def user_name(name):
 def project_name(name):
     return "project %s" % name
 
-
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)

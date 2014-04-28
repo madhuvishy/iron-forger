@@ -4,4 +4,4 @@ from wtforms import TextField, BooleanField
  
 class ProposalForm(Form):
     name = TextField('name')
-    description = TextField('description')
+    example = TextField('example')
